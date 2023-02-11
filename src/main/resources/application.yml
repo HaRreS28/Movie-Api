@@ -3,3 +3,15 @@ spring:
     mongodb:
       database: ${MONGO_DB}
       uri: mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_CLUSTER}/test
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: marcinmoch757@gmail.com
+    password: mujvedvinupvuwue
+    properties:
+      mail:
+        smtp:
+          ssl:
+          auth: true
+          starttls:
+            enable: true
