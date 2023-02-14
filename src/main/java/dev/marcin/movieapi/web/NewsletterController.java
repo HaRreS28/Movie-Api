@@ -4,8 +4,14 @@ import dev.marcin.movieapi.newsletter.EmailVerificationService;
 import dev.marcin.movieapi.newsletter.NewsletterDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
+
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/newsletter")
@@ -16,6 +22,15 @@ public class NewsletterController {
     @PostMapping
     public ResponseEntity<?> newsletter(@Valid @RequestBody NewsletterDto newsletterDto){
         emailVerificationService.sendEmail(newsletterDto);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        return ex.getBindingResult().getFieldErrors()
+                .stream()
+                .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
     }
 }
