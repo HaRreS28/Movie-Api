@@ -29,7 +29,6 @@ public class User implements UserDetails {
     private ObjectId id;
     @Email(message = "Email is not valid")
     @NotBlank
-    @Indexed(unique = true)
     private String email;
     @NotBlank
     @Size(min = 8,max = 100)
