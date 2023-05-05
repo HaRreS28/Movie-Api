@@ -1,5 +1,6 @@
 package dev.marcin.movieapi.review;
 
+import dev.marcin.movieapi.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
@@ -14,4 +15,5 @@ public class Review {
     @Id
     private ObjectId id;
     private String body;
+    private User user;
 }
