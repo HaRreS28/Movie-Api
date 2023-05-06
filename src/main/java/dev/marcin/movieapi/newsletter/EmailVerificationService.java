@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class EmailVerificationService implements EmailSender{
 
     private final JavaMailSender mailSender;
-    private static final String FROM="marcinmoch757@gmail.com";
+    private static final String FROM="";
 
     @Override
     @Async
