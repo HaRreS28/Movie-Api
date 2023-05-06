@@ -19,6 +19,7 @@ public class SecurityConfig {
     private final static String PREFIX ="/api/v1/";
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.cors();
         http.csrf().disable();
         http.authorizeHttpRequests().requestMatchers(PREFIX+"auth/**",PREFIX+"movies/**",
                         PREFIX+"newsletter")
